@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import rmi.server.Enums.Direction;
+import rmi.enums.Enums.Direction;
 import rmi.server.ServerInterface;
 
 public class GUI extends javax.swing.JFrame {
@@ -117,7 +117,7 @@ public class GUI extends javax.swing.JFrame {
 	 * keyhandler
 	 * @throws RemoteException 
 	 */
-	private void MessageKeyPressed(KeyEvent evt) throws RemoteException {
+	private void MessageKeyPressed(KeyEvent evt) throws RemoteException {	
 		if (evt.getKeyCode() == KeyEvent.VK_ENTER
 				&& !Message.getText().equals("")) {
 			try {

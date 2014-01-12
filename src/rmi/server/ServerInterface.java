@@ -3,6 +3,7 @@ package rmi.server;
 import java.rmi.*;
 
 import rmi.client.ClientInterface;
+import rmi.enums.Enums;
 
 public interface ServerInterface extends Remote {
 	public void login(ClientInterface client, String nickname)

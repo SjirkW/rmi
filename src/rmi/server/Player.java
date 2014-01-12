@@ -2,8 +2,10 @@ package rmi.server;
 
 import java.net.Socket;
 import java.rmi.RemoteException;
+import java.util.Iterator;
 
 import rmi.client.ClientInterface;
+import rmi.enums.Enums;
 
 public class Player {
 	private String nickName;
@@ -20,8 +22,8 @@ public class Player {
 	public String getName() {
 		return nickName;
 	}
-	
-	public ClientInterface getClient(){
+
+	public ClientInterface getClient() {
 		return client;
 	}
 
@@ -38,12 +40,21 @@ public class Player {
 		this.score++;
 	}
 
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
 	public String coordsToString() {
 		return Integer.toString(x) + "," + Integer.toString(y);
 	}
 
 	/**
 	 * change the direction of a user by looking at the last movement
+	 * 
 	 * @param dir
 	 * @param userName
 	 * @throws RemoteException
@@ -77,7 +88,31 @@ public class Player {
 			}
 			break;
 		}
-		
+
 		System.out.println(nickName + " new position = " + x + "," + y);
+	}
+
+	/**
+	 * Check if a player is colliding with another player
+	 * 
+	 * @param user
+	 * @return
+	 * @throws RemoteException
+	 */
+	public boolean hasPosition(int x, int y) throws RemoteException {
+		if ((this.x == x) && (this.y == y)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void respawn() {
+		// generate random x and y between grid size
+		int newX = (int) (Math.random() * Server.GRID_SIZE);
+		int newY = (int) (Math.random() * Server.GRID_SIZE);
+		//set a new position for the player
+		this.x = newX;
+		this.y = newY;	
 	}
 }
