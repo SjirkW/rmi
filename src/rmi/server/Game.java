@@ -24,6 +24,7 @@ public class Game {
 		player.changePosition(direction);
 		if (isColliding(player)) {
 			player.incScore();
+			updateScores();
 			System.out.println(player.getName() + " Scored! (" + player.getScore() + ")" );
 		}
 	}
@@ -78,6 +79,20 @@ public class Game {
 	private void logout(ClientInterface client) throws RemoteException {
 		broadcastMessage("--> " + "someone" + " left the game", "");
 		remove(client);
+	}
+	
+	/**
+	 * update the scores for all players in the game
+	 * @throws RemoteException 
+	 */
+	private void updateScores() throws RemoteException{
+		String scores = "";
+		for (int i = 0; i < players.size(); i++) {
+			ClientInterface c = players.get(i).getClient();
+			String playerAndScore = players.get(i).getName() + ": " + players.get(i).getScore();
+			scores += playerAndScore + "\n";
+				c.getScores(scores);
+		}
 	}
 	
 	private Player getPlayer(ClientInterface client) {

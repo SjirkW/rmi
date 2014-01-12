@@ -10,8 +10,6 @@ import rmi.client.ClientInterface;
 import rmi.enums.Enums.Direction;
 
 public class Server extends UnicastRemoteObject implements ServerInterface {
-
-	protected ArrayList<ClientInterface> clients = new ArrayList<ClientInterface>();
 	Game game;
 
 	public static final int GRID_SIZE = 10;
@@ -19,7 +17,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 	public Server() throws RemoteException {
 		game = new Game();
 	}
-	
+
 	public static void main(String[] args) {
 		try {
 			LocateRegistry.createRegistry(1099);
@@ -32,6 +30,8 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 
 	public void login(ClientInterface client, String nickname)
 			throws RemoteException {
+		System.out.println(client);
+		System.out.println(nickname);
 		Player player = new Player(client, nickname);
 		game.addPlayer(player);
 	}
@@ -41,9 +41,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 		game.broadcastMessage(message, nickname);
 	}
 
-
-
-	@Override
 	public void move(ClientInterface client, Direction direction)
 			throws RemoteException {
 		game.move(client, direction);

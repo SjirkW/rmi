@@ -14,4 +14,7 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
 		GUI.showMessage(message, nickname);
 	}
 
+	public void getScores(String scores) throws RemoteException {
+		GUI.showScores(scores);
+	}
 }

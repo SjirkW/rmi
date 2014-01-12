@@ -109,10 +109,12 @@ public class GUI extends javax.swing.JFrame {
 	public static void showMessage(String message, String nickname) {
 		if (!nickname.equals(""))
 			History.append(nickname + ": " + message + "\n");
-		else
-			History.append(message + "\n");
 	}
-
+	
+	public static void showScores(String scores)
+	{
+		History.setText(scores);
+	}
 	/**
 	 * keyhandler
 	 * @throws RemoteException 
