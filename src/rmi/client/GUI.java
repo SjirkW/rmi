@@ -67,6 +67,9 @@ public class GUI extends javax.swing.JFrame {
 		initGUI();
 	}
 
+	/**
+	 * create the interface
+	 */
 	private void initGUI() {
 		try {
 			{
@@ -111,11 +114,20 @@ public class GUI extends javax.swing.JFrame {
 		}
 	}
 	
+	/**
+	 * show scores on the screen
+	 * @param scores
+	 */
 	public static void showScores(String scores)
 	{
 		History.setText(scores);
 	}
 	
+	/**
+	 * draw the player on the current position
+	 * @param x
+	 * @param y
+	 */
 	public static void drawPosition(int x, int y){
 		grid.fillCell(x, y);
 	}

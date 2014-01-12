@@ -13,12 +13,23 @@ public class Game {
 
 	}
 	
+	/**
+	 * add a player to player list
+	 * @param player
+	 * @throws RemoteException
+	 */
 	public void addPlayer(Player player) throws RemoteException{
 		players.add(player);
 		player.respawn();
 		System.out.println(player.getName() + " joined");
 	}
 	
+	/**
+	 * move a single player in a given direction
+	 * @param client
+	 * @param direction
+	 * @throws RemoteException
+	 */
 	public void move(ClientInterface client, Direction direction)
 			throws RemoteException {
 		Player player = getPlayer(client);
@@ -31,6 +42,12 @@ public class Game {
 		}
 	}
 
+	/**
+	 * check if a player is colliding with other players
+	 * @param player
+	 * @return
+	 * @throws RemoteException
+	 */
 	public boolean isColliding(Player player) throws RemoteException {
 		for (int i = 0; i < players.size(); i++) {
 			Player otherPlayer = players.get(i);
@@ -44,6 +61,11 @@ public class Game {
 		return false;
 	}
 	
+	/**
+	 * respawn a player on a new position, this is a recursive method
+	 * @param player
+	 * @throws RemoteException
+	 */
 	public void respawn(Player player) throws RemoteException{
 		//get new coords
 		player.respawn();
@@ -60,14 +82,16 @@ public class Game {
 		}
 		System.out.println(player.getName() + " has spawned at " + player.getX() + "," + player.getY());
 	}
+
 	
-	public void remove(ClientInterface client){
-		players.remove(getPlayer(client));
-	}
-	
+	/**
+	 * remove a client from the game
+	 * @param client
+	 * @throws RemoteException
+	 */
 	private void logout(ClientInterface client) throws RemoteException {
 		System.out.println("--> " + "someone" + " left the game");
-		remove(client);
+		players.remove(getPlayer(client));
 	}
 	
 	/**
@@ -88,6 +112,11 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * get a player from the list using client as its input
+	 * @param client
+	 * @return
+	 */
 	private Player getPlayer(ClientInterface client) {
 		for (int i = 0; i < players.size(); i++) {
 			Player player = players.get(i);

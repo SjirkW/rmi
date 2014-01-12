@@ -105,6 +105,10 @@ public class Player {
 		}
 	}
 
+	/**
+	 * generate a new position for the player and send it to the client application
+	 * @throws RemoteException
+	 */
 	public void respawn() throws RemoteException {
 		// generate random x and y between grid size
 		int newX = (int) (Math.random() * Server.GRID_SIZE);

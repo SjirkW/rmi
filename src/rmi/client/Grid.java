@@ -34,6 +34,9 @@ public class Grid extends JPanel
 		stepsizeY = height / cellsY;
 	}
 
+	/**
+	 * render the grid
+	 */
 	@Override
 	protected void paintComponent(Graphics g)
 	{
@@ -59,6 +62,11 @@ public class Grid extends JPanel
 		}
 	}
 
+	/**
+	 * fill a single cell and clear the other ones
+	 * @param x
+	 * @param y
+	 */
 	public void fillCell(int x, int y)
 	{
 		fillCells.clear();

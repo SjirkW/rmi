@@ -7,12 +7,5 @@ public class Enums {
 		   LEFT, 
 		   DOWN
 		 }
-	 
-	 public enum Message{
-		 PUBLICMESSAGE,
-		 ONLINE,
-		 OFFLINE,
-		 POSITION_CHANGED,
-		 PLAYER_SCORED
-	 }
+
 }
