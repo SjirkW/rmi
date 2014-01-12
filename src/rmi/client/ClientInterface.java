@@ -6,8 +6,8 @@ import java.rmi.RemoteException;
 import rmi.enums.Enums;
 
 public interface ClientInterface extends Remote {
-	public void getMessage(String message, String nickname)
-			throws RemoteException;
 
 	public void getScores(String scores)throws RemoteException;
+	
+	public void getPosition(int x, int y) throws RemoteException;
 }

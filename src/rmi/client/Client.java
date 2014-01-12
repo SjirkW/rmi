@@ -9,12 +9,11 @@ public class Client extends UnicastRemoteObject implements ClientInterface {
 	public Client() throws RemoteException {
 	}
 
-	public void getMessage(String message, String nickname)
-			throws RemoteException {
-		GUI.showMessage(message, nickname);
-	}
-
 	public void getScores(String scores) throws RemoteException {
 		GUI.showScores(scores);
+	}
+	
+	public void getPosition(int x, int y) throws RemoteException {
+		GUI.drawPosition(x, y);
 	}
 }

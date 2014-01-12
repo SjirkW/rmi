@@ -88,8 +88,6 @@ public class Player {
 			}
 			break;
 		}
-
-		System.out.println(nickName + " new position = " + x + "," + y);
 	}
 
 	/**
@@ -107,12 +105,14 @@ public class Player {
 		}
 	}
 
-	public void respawn() {
+	public void respawn() throws RemoteException {
 		// generate random x and y between grid size
 		int newX = (int) (Math.random() * Server.GRID_SIZE);
 		int newY = (int) (Math.random() * Server.GRID_SIZE);
 		//set a new position for the player
 		this.x = newX;
 		this.y = newY;	
+		
+		this.getClient().getPosition(x,y);
 	}
 }

@@ -15,13 +15,15 @@ public class Game {
 	
 	public void addPlayer(Player player) throws RemoteException{
 		players.add(player);
-		broadcastMessage("--> " + player.getName() + " is entering the game", "");
+		player.respawn();
+		System.out.println(player.getName() + " joined");
 	}
 	
 	public void move(ClientInterface client, Direction direction)
 			throws RemoteException {
 		Player player = getPlayer(client);
 		player.changePosition(direction);
+		client.getPosition(player.getX(), player.getY());
 		if (isColliding(player)) {
 			player.incScore();
 			updateScores();
@@ -42,7 +44,7 @@ public class Game {
 		return false;
 	}
 	
-	public void respawn(Player player){
+	public void respawn(Player player) throws RemoteException{
 		//get new coords
 		player.respawn();
 		for (int i = 0; i < players.size(); i++) {	
@@ -63,21 +65,8 @@ public class Game {
 		players.remove(getPlayer(client));
 	}
 	
-	public void broadcastMessage(String message, String nickname)
-			throws RemoteException {
-		for (int i = 0; i < players.size(); i++) {
-			ClientInterface c = players.get(i).getClient();
-			try {
-				c.getMessage(message, nickname);
-			} catch (RemoteException e) {
-				logout(c);
-				i = i - 1;
-			}
-		}
-	}
-	
 	private void logout(ClientInterface client) throws RemoteException {
-		broadcastMessage("--> " + "someone" + " left the game", "");
+		System.out.println("--> " + "someone" + " left the game");
 		remove(client);
 	}
 	
@@ -90,8 +79,12 @@ public class Game {
 		for (int i = 0; i < players.size(); i++) {
 			ClientInterface c = players.get(i).getClient();
 			String playerAndScore = players.get(i).getName() + ": " + players.get(i).getScore();
-			scores += playerAndScore + "\n";
-				c.getScores(scores);
+			scores += playerAndScore + "\n";	
+		}
+		
+		for (int i = 0; i < players.size(); i++) {
+			ClientInterface c = players.get(i).getClient();
+			c.getScores(scores);	
 		}
 	}
 	

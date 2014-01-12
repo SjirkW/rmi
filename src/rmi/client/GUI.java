@@ -1,4 +1,7 @@
 package rmi.client;
+
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowListener;
@@ -24,6 +27,8 @@ public class GUI extends javax.swing.JFrame {
 	private static JTextArea History;
 	private JTextField Message;
 	private JScrollPane jScrollPaneHistory;
+	
+	static Grid grid = new Grid(10, 10, 200, 200);
 
 	/**
 	 * Display the GUI
@@ -67,7 +72,7 @@ public class GUI extends javax.swing.JFrame {
 			{
 				jScrollPaneHistory = new JScrollPane();
 				getContentPane().add(jScrollPaneHistory);
-				jScrollPaneHistory.setBounds(7, 7, 378, 203);
+				jScrollPaneHistory.setBounds(7, 7, 150, 203);
 				jScrollPaneHistory
 						.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 				{
@@ -76,6 +81,9 @@ public class GUI extends javax.swing.JFrame {
 					History.setEditable(false);
 					jScrollPaneHistory.setViewportView(History);
 				}
+				
+				getContentPane().add(grid);
+				grid.setBounds(170, 7, 210, 210);
 			}
 			{
 				Message = new JTextField();
@@ -84,7 +92,7 @@ public class GUI extends javax.swing.JFrame {
 				Message.addKeyListener(new KeyAdapter() {
 					public void keyReleased(KeyEvent evt) {
 						try {
-							MessageKeyPressed(evt);
+							arrowKeyPressed(evt);
 						} catch (RemoteException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -102,34 +110,21 @@ public class GUI extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * show a message in the message space
-	 */
-	public static void showMessage(String message, String nickname) {
-		if (!nickname.equals(""))
-			History.append(nickname + ": " + message + "\n");
-	}
 	
 	public static void showScores(String scores)
 	{
 		History.setText(scores);
 	}
+	
+	public static void drawPosition(int x, int y){
+		grid.fillCell(x, y);
+	}
 	/**
 	 * keyhandler
 	 * @throws RemoteException 
 	 */
-	private void MessageKeyPressed(KeyEvent evt) throws RemoteException {	
-		if (evt.getKeyCode() == KeyEvent.VK_ENTER
-				&& !Message.getText().equals("")) {
-			try {
-				server.broadcastMessage(Message.getText(), nickname);
-				Message.setText("");
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-		}
-		else if (evt.getKeyCode() == KeyEvent.VK_LEFT){
+	private void arrowKeyPressed(KeyEvent evt) throws RemoteException {	
+		if (evt.getKeyCode() == KeyEvent.VK_LEFT){
 			server.move(this.client, Direction.LEFT);
 		}
 		else if (evt.getKeyCode() == KeyEvent.VK_RIGHT){
@@ -142,4 +137,6 @@ public class GUI extends javax.swing.JFrame {
 			server.move(this.client, Direction.UP);
 		}
 	}
+	
+
 }

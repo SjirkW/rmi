@@ -36,11 +36,6 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 		game.addPlayer(player);
 	}
 
-	public void broadcastMessage(String message, String nickname)
-			throws RemoteException {
-		game.broadcastMessage(message, nickname);
-	}
-
 	public void move(ClientInterface client, Direction direction)
 			throws RemoteException {
 		game.move(client, direction);
