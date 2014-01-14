@@ -1,4 +1,4 @@
-package rmi.server;
+package rmi.utils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

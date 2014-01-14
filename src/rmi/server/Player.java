@@ -3,7 +3,7 @@ package rmi.server;
 import java.rmi.RemoteException;
 
 import rmi.client.ClientInterface;
-import rmi.enums.Enums;
+import rmi.utils.Enums;
 
 public class Player {
 	private String nickName;

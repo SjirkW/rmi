@@ -1,4 +1,4 @@
-package rmi.enums;
+package rmi.utils;
 
 public class Enums {
 	 public enum Direction {

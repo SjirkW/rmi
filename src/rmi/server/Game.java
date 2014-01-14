@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import rmi.client.ClientInterface;
-import rmi.enums.Enums.Direction;
+import rmi.utils.Enums.Direction;
 
 public class Game {
 	protected ArrayList<Player> players = new ArrayList<Player>();

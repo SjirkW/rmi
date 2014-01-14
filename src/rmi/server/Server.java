@@ -6,7 +6,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 
 import rmi.client.ClientInterface;
-import rmi.enums.Enums.Direction;
+import rmi.utils.Frame;
+import rmi.utils.Enums.Direction;
 
 @SuppressWarnings("serial")
 public class Server extends UnicastRemoteObject implements ServerInterface {

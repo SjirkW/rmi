@@ -3,7 +3,6 @@ package rmi.client;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -14,8 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 
-import rmi.enums.Enums.Direction;
 import rmi.server.ServerInterface;
+import rmi.utils.Enums.Direction;
 
 @SuppressWarnings("serial")
 public class GUI extends javax.swing.JFrame {
