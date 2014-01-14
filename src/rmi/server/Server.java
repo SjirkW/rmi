@@ -4,11 +4,11 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 import rmi.client.ClientInterface;
 import rmi.enums.Enums.Direction;
 
+@SuppressWarnings("serial")
 public class Server extends UnicastRemoteObject implements ServerInterface {
 	Game game;
 	public static final int GRID_SIZE = 10;

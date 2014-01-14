@@ -89,7 +89,7 @@ public class Game {
 	 * @param client
 	 * @throws RemoteException
 	 */
-	private void logout(ClientInterface client) throws RemoteException {
+	public void logout(ClientInterface client) throws RemoteException {
 		System.out.println("--> " + "someone" + " left the game");
 		players.remove(getPlayer(client));
 	}
@@ -101,7 +101,6 @@ public class Game {
 	private void updateScores() throws RemoteException{
 		String scores = "";
 		for (int i = 0; i < players.size(); i++) {
-			ClientInterface c = players.get(i).getClient();
 			String playerAndScore = players.get(i).getName() + ": " + players.get(i).getScore();
 			scores += playerAndScore + "\n";	
 		}

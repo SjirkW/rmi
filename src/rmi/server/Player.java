@@ -1,8 +1,6 @@
 package rmi.server;
 
-import java.net.Socket;
 import java.rmi.RemoteException;
-import java.util.Iterator;
 
 import rmi.client.ClientInterface;
 import rmi.enums.Enums;

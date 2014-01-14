@@ -1,6 +1,5 @@
 package rmi.client;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -11,10 +10,9 @@ import javax.swing.JPanel;
  * draw a grid specifying the amount of cells and its size
  * 
  */
+@SuppressWarnings("serial")
 public class Grid extends JPanel
 {
-	private int amountCellsX = 1;
-	private int amountCellsY = 1;
 	private int width = 1;
 	private int height = 1;
 	int stepsizeX = 1;
@@ -25,8 +23,6 @@ public class Grid extends JPanel
 	public Grid(int cellsX, int cellsY, int width, int height)
 	{
 		fillCells = new ArrayList<>(25);
-		this.amountCellsX = cellsX;
-		this.amountCellsY = cellsY;
 		this.width = width;
 		this.height = height;
 

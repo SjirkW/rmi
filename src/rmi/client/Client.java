@@ -2,8 +2,7 @@ package rmi.client;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import rmi.enums.Enums.Direction;
-
+@SuppressWarnings("serial")
 public class Client extends UnicastRemoteObject implements ClientInterface {
 
 	public Client() throws RemoteException {
