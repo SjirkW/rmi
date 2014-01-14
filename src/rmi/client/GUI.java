@@ -3,6 +3,7 @@ package rmi.client;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowEvent;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -35,7 +36,7 @@ public class GUI extends javax.swing.JFrame {
 	public static void main(String[] args) {
 		host = JOptionPane.showInputDialog("Enter the host of the gameserver",
 				"localhost");
-		nickname = JOptionPane.showInputDialog("Enter your nickname");
+		nickname = JOptionPane.showInputDialog("Enter your nickname", "Anoniem");
 		if (host != null && nickname != null && !nickname.equals("")) {
 			try {
 				GUI inst = new GUI();
@@ -85,7 +86,7 @@ public class GUI extends javax.swing.JFrame {
 				getContentPane().add(grid);
 				grid.setBounds(170, 7, 210, 210);
 			}
-			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			getContentPane().setLayout(null);
 			this.setTitle("MyRMIChat - " + nickname);
 			this.setResizable(false);
@@ -150,5 +151,4 @@ public class GUI extends javax.swing.JFrame {
 	public static void drawPosition(int x, int y) {
 		grid.fillCell(x, y);
 	}
-
 }

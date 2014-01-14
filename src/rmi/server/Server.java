@@ -11,6 +11,7 @@ import rmi.enums.Enums.Direction;
 @SuppressWarnings("serial")
 public class Server extends UnicastRemoteObject implements ServerInterface {
 	Game game;
+	static Frame frame;
 	public static final int GRID_SIZE = 10;
 
 	public Server() throws RemoteException {
@@ -29,6 +30,7 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		frame = new Frame();
 	}
 
 	/**
@@ -46,6 +48,15 @@ public class Server extends UnicastRemoteObject implements ServerInterface {
 	public void move(ClientInterface client, Direction direction)
 			throws RemoteException {
 		game.move(client, direction);
+	}
+	
+	/**
+	 * log a player out
+	 * @param client
+	 * @throws RemoteException
+	 */
+	public void logout(ClientInterface client, String nickname) throws RemoteException {
+		game.logout(client, nickname);
 	}
 
 }
